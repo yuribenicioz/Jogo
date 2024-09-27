@@ -66,13 +66,28 @@ function setNextQuestion() {
 
 function showQuestion(question) {
     questionElement.innerText = question.question;
-    question.answers.forEach((answer, index) => {
+
+    // Embaralha as respostas antes de exibi-las
+    const shuffledAnswers = [...question.answers];
+    shuffle(shuffledAnswers);
+    
+    shuffledAnswers.forEach((answer, index) => {
         const button = document.createElement('button');
         button.innerText = answer;
         button.classList.add('btn', 'answer-button');
-        button.addEventListener('click', () => selectAnswer(index === question.correct));
+        
+        // Verifica se a resposta embaralhada é a correta
+        const correctIndex = question.answers.indexOf(answer);
+        button.addEventListener('click', () => selectAnswer(correctIndex === question.correct));
         answerButtons.appendChild(button);
     });
+}
+
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
 }
 
 function resetState() {
