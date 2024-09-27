@@ -3,25 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Perguntas sobre Funções Oxigenadas</title>
     <link rel="stylesheet" href="styles.css">
+    <title>Jogo de Funções Oxigenadas</title>
 </head>
 <body>
-    <div class="container" id="name-container">
-        <label for="name">Digite seu nome:</label>
-        <input type="text" id="name" />
-        <button id="start-button" class="btn">Iniciar Jogo</button>
+    <div class="container">
+        <h1>Teste seus Conhecimentos!</h1>
+        <div id="name-container">
+            <label for="name">Insira seu nome:</label>
+            <input type="text" id="name">
+            <button id="start-button">Começar</button>
+        </div>
+        <div id="question-container" class="hidden">
+            <div id="question"></div>
+            <div id="answer-buttons"></div>
+            <button id="next-button" class="hidden">Próxima Pergunta</button>
+        </div>
+        <div id="result" class="hidden"></div>
     </div>
-
-    <div class="container" id="question-container" style="display: none;">
-        <p id="question"></p>
-        <div id="answer-buttons"></div>
-        <button id="next-button" class="btn" style="display: none;">Próxima Pergunta</button>
-    </div>
-
-    <div class="container" id="result" style="display: none;"></div>
-
     <script src="script.js"></script>
 </body>
 </html>
-
