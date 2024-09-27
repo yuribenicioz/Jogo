@@ -59,35 +59,21 @@ nextButton.addEventListener('click', () => {
     }
 });
 
-function setNextQuestion() {
-    resetState();
-    showQuestion(questions[currentQuestionIndex]);
-}
-
 function showQuestion(question) {
+    resetState();
     questionElement.innerText = question.question;
 
-    // Embaralha as respostas antes de exibi-las
-    const shuffledAnswers = [...question.answers];
-    shuffle(shuffledAnswers);
-    
+    // Embaralhar as respostas
+    const shuffledAnswers = shuffleArray([...question.answers]); // Clone para não modificar o original
     shuffledAnswers.forEach((answer, index) => {
         const button = document.createElement('button');
         button.innerText = answer;
         button.classList.add('btn', 'answer-button');
-        
-        // Verifica se a resposta embaralhada é a correta
-        const correctIndex = question.answers.indexOf(answer);
-        button.addEventListener('click', () => selectAnswer(correctIndex === question.correct));
+        button.style.border = '2px solid green'; // Borda verde para as alternativas
+        button.style.color = 'black'; // Letra preta para as alternativas
+        button.addEventListener('click', () => selectAnswer(answer === question.answers[question.correct]));
         answerButtons.appendChild(button);
     });
-}
-
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
-    }
 }
 
 function resetState() {
@@ -109,6 +95,25 @@ function showResult() {
     resultContainer.style.display = 'block';
     resultContainer.innerHTML = `Parabéns, ${playerName}! Você acertou ${correctAnswers} de ${questions.length} questões!`;
 }
+
+// Função para embaralhar as respostas
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Iniciar a primeira pergunta
+function setNextQuestion() {
+    showQuestion(questions[currentQuestionIndex]);
+}
+
+// Ajustes para exibir a primeira pergunta
+nextButton.style.display = 'none';
+questionContainer.style.display = 'none';
+resultContainer.style.display = 'none';
 
 
     
