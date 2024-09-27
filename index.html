@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Perguntas sobre Funções Oxigenadas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="name-container">
+        <label for="name">Digite seu nome:</label>
+        <input type="text" id="name" />
+        <button id="start-button" class="btn">Iniciar Jogo</button>
+    </div>
+
+    <div class="container" id="question-container" style="display: none;">
+        <p id="question"></p>
+        <div id="answer-buttons"></div>
+        <button id="next-button" class="btn" style="display: none;">Próxima Pergunta</button>
+    </div>
+
+    <div class="container" id="result" style="display: none;"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
